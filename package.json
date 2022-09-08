@@ -32,7 +32,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/formio/angular-formio/issues"
+    "url": "https://github.com/heybaton/formio-ng/issues"
   },
   "engines": {
     "node": ">=6.0.0"
