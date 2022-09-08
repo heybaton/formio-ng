@@ -43,7 +43,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() noeval ? = false;
   @Input() refresh?: Observable<void>;
   @Input() rebuild?: Observable<object>;
-  @Output() change?: EventEmitter<object>;
+  @Output() change: EventEmitter<object>;
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
   constructor(
@@ -155,7 +155,10 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   setDisplay(display: String, prevDisplay?: string) {
     if (display && display !== prevDisplay) {
-      this.builder.display = display;
+      return this.builder.setDisplay(display).then(instance => this.setInstance(instance));
+    }
+    else {
+      return Promise.resolve();
     }
   }
 
