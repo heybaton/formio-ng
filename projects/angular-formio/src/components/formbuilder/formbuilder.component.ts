@@ -155,10 +155,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   setDisplay(display: String, prevDisplay?: string) {
     if (display && display !== prevDisplay) {
-      return this.builder.setDisplay(display).then(instance => this.setInstance(instance));
-    }
-    else {
-      return Promise.resolve();
+      (this.builder as any).display = display;
     }
   }
 
