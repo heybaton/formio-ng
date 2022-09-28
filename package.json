@@ -1,22 +1,26 @@
 {
-  "name": "@formio/angular",
-  "version": "5.3.0-rc.1",
+  "name": "@heybaton/formio-ng",
+  "version": "5.2.2",
   "scripts": {
     "ng": "ng",
-    "build": "ng build angular-formio",
+    "build": "ng build angular-formio && npm run version",
     "build:watch": "ng build angular-formio --watch",
-    "build:prod": "ng build angular-formio --configuration production",
+    "build:prod": "ng build angular-formio --configuration production && npm run version",
+    "version": "VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\\\",]//g' | tr -d '[[:space:]]') && ./node_modules/replace-in-file/bin/cli.js \"VERSION\" \"$VERSION\" dist/angular-formio/package.json",
     "docs": "npm run docs:build",
     "docs:build": "compodoc -p tsconfig.json -n angular-formio -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
-    "publish": "npm run build:prod && npm publish dist/angular-formio",
+    "publish": "npm run build:prod && npm publish ./dist/angular-formio",
     "test": "ng test",
     "lint": "ng lint"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/formio/angular-formio"
+    "url": "https://github.com/heybaton/formio-ng"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/heybaton"
   },
   "author": {
     "name": "Travis Tidwell",
@@ -27,7 +31,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/formio/angular-formio/issues"
+    "url": "https://github.com/heybaton/formio-ng/issues"
   },
   "engines": {
     "node": ">=6.0.0"
